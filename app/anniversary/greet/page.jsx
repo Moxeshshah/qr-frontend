@@ -122,7 +122,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-
+export const dynamic = "force-dynamic";
 export default function AnniversaryGreet() {
   const router = useRouter();
   const params = useSearchParams();
