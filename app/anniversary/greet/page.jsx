@@ -264,15 +264,48 @@
 
 "use client";
 
+"use client";
+
 import { Suspense } from "react";
-import GreetContent from "./GreetContent";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const dynamic = "force-dynamic";
+
+function GreetPageContent() {
+  const router = useRouter();
+  const params = useSearchParams();
+  const code = params?.get("code") || "";
+
+  return (
+    <div
+      style={{
+        fontFamily: "'Poppins', sans-serif",
+        background: "linear-gradient(180deg,#ff9a9e,#fad0c4,#fbc2eb)",
+        minHeight: "100vh",
+        padding: "25px 20px 40px",
+        color: "white",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
+      <div>
+        <h2>Love Sent Successfully! 💖</h2>
+        <button
+          onClick={() => router.push(`/anniversary/home?code=${code}`)}
+        >
+          Back to Memories
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function Page() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <GreetContent />
+      <GreetPageContent />
     </Suspense>
   );
 }
